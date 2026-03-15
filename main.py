@@ -7,7 +7,8 @@ import asyncio
 # Create FastAPI app
 app = FastAPI(title="Todo API", version="1.0.0")
 
-# Add CORS middleware - allow all local development origins
+# Add CORS middleware - allow all origins for production
+# In production, restrict this to your specific domains
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -15,6 +16,9 @@ app.add_middleware(
         "http://127.0.0.1:3000",
         "http://localhost:3001",
         "http://127.0.0.1:3001",
+        "https://todo-frontend-mrgz.vercel.app",  # Vercel production
+        "https://todo-frontend-mrgz-zaryab-irfans-projects.vercel.app",  # Vercel preview
+        "https://vercel.com",  # Vercel dashboard
     ],
     allow_credentials=True,
     allow_methods=["*"],
